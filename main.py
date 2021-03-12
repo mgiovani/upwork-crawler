@@ -1,11 +1,12 @@
-import asyncio
-from pyppeteer import launch
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
-async def main():
-    browser = await launch(args=['--no-sandbox', '--disable-setuid-sandbox'])
-    page = await browser.newPage()
-    await page.goto('https://google.com')
-    await page.screenshot({'path': 'example.png'})
-    await browser.close()
-
-asyncio.run(main())
+driver = webdriver.Chrome()
+driver.get("http://www.python.org")
+assert "Python" in driver.title
+elem = driver.find_element_by_name("q")
+elem.clear()
+elem.send_keys("pycon")
+elem.send_keys(Keys.RETURN)
+assert "No results found." not in driver.page_source
+driver.close()
