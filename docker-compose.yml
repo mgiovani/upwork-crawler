@@ -1,0 +1,9 @@
+services:
+  upwork-crawler:
+    image: upwork-crawler:latest
+    environment:
+      - UPWORK_USERNAME=${UPWORK_USERNAME}
+      - UPWORK_PASSWORD=${UPWORK_PASSWORD}
+      - UPWORK_SECRET_ANSWER=${UPWORK_SECRET_ANSWER}
+      - LOGURU_FORMAT="{time} | <lvl>{message}</lvl>"
+      - DISPLAY=${DISPLAY:-:0.0}

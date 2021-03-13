@@ -11,14 +11,12 @@ curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE \
 `/chromedriver_linux64.zip
 RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
-# Set display port as an environment variable
-ENV DISPLAY=:99
-
-COPY . /app
+# Installing dependency manager and dependencies
 WORKDIR /app
+RUN pip install poetry
+COPY pyproject.toml poetry.lock /app/
+RUN poetry config virtualenvs.create false && poetry install
 
-RUN pip install --upgrade pip
+ADD . /app
 
-RUN pip install selenium
-
-CMD ["python", "./main.py"]
+ENTRYPOINT ["python", "./src/main.py"]
