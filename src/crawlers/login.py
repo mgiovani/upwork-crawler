@@ -32,6 +32,7 @@ class Login():
         if self.DEBUG:
             options.add_argument('window-size=1920,1080')
             options.set_headless(False)
+            logger.level('DEBUG')
             logger.debug('Crawler set to DEBUG mode')
 
         self.driver = webdriver.Chrome(chrome_options=options)
@@ -46,19 +47,23 @@ class Login():
             self.driver.quit()
             raise PageAccessDenied()
 
+    def _wait_to_be_clickable(self, element_id):
+        max_waiting_time = 5  # seconds
+        wait = WebDriverWait(self.driver, max_waiting_time)
+        element = wait.until(expected_conditions.element_to_be_clickable((By.ID, element_id)))
+        return element
+
     def _fill_username_field(self):
         logger.debug('Filling username field')
         login_input_id = 'login_username'
-        element = self.driver.find_element_by_id(login_input_id)
+        element = self._wait_to_be_clickable(login_input_id)
         element.send_keys(self.USERNAME)
         element.send_keys(Keys.RETURN)
 
     def _fill_password_field(self):
         logger.debug('Filling password field')
         password_input_id = 'login_password'
-        max_waiting_time = 5  # seconds
-        wait = WebDriverWait(self.driver, max_waiting_time)
-        element = wait.until(expected_conditions.element_to_be_clickable((By.ID, password_input_id)))
+        element = self._wait_to_be_clickable(password_input_id)
         element.send_keys(self.PASSWORD)
         element.send_keys(Keys.RETURN)
 
@@ -68,3 +73,4 @@ class Login():
 
         self._fill_username_field()
         self._fill_password_field()
+        self._wait_to_be_clickable('search-box-el')
