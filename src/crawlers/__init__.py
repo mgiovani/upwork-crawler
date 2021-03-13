@@ -1,4 +1,6 @@
 import json
+from pathlib import Path
+from datetime import date
 
 from .login import Login
 from .exceptions import PageAccessDenied
@@ -12,7 +14,22 @@ class BaseJsonCrawler():
         login_crawler.run()
         self.driver = login_crawler.get_web_driver()
 
-    def _get_json_from_page(self, page_url):
+
+    def _get_json_full_path(self, filename):
+        today = date.today().isoformat()
+        results_folder = 'crawler_results'
+        root_path = Path(__file__).parent.parent.parent
+        folder_path = root_path / results_folder / today
+        folder_path.mkdir(parents=True, exist_ok=True)
+        return folder_path / filename
+
+    def save_json_to_file(self, data, filename):
+        full_path = self._get_json_full_path(filename)
+        with open(full_path, 'w') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        return
+
+    def get_json_from_page(self, page_url):
         self.driver.get(page_url)
         raw_json = self.driver.find_element_by_tag_name('pre').text
         return json.loads(raw_json)
