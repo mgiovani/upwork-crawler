@@ -28,6 +28,7 @@ class Login():
         options = Options()
         valid_user_agent = 'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36'
         options.add_argument(valid_user_agent)
+        options.add_argument('--no-sandbox')
         options.set_headless(True)
         if self.DEBUG:
             options.add_argument('window-size=1920,1080')
@@ -48,7 +49,7 @@ class Login():
             raise PageAccessDenied()
 
     def _wait_to_be_clickable(self, element_id):
-        max_waiting_time = 5  # seconds
+        max_waiting_time = 10  # seconds
         wait = WebDriverWait(self.driver, max_waiting_time)
         element = wait.until(expected_conditions.element_to_be_clickable((By.ID, element_id)))
         return element
