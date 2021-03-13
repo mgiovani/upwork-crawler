@@ -1,5 +1,6 @@
 import os
 
+from loguru import logger
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -21,6 +22,7 @@ class Login():
 
     def __init__(self):
         if not all([self.USERNAME, self.PASSWORD, self.SECRET_ANSWER]):
+            logger.error('Credentials not found. You must define credentials env vars')
             raise UnableToLocateCredentials()
 
         options = Options()
@@ -30,6 +32,7 @@ class Login():
         if self.DEBUG:
             options.add_argument('window-size=1920,1080')
             options.set_headless(False)
+            logger.debug('Crawler set to DEBUG mode')
 
         self.driver = webdriver.Chrome(chrome_options=options)
         self.driver.implicitly_wait(1)  # second
@@ -39,16 +42,19 @@ class Login():
 
     def _is_access_denied(self):
         if 'page has been denied' in self.driver.title:
+            logger.error('Acess to this page was denied. Quitting webdriver')
             self.driver.quit()
             raise PageAccessDenied()
 
     def _fill_username_field(self):
+        logger.debug('Filling username field')
         login_input_id = 'login_username'
         element = self.driver.find_element_by_id(login_input_id)
         element.send_keys(self.USERNAME)
         element.send_keys(Keys.RETURN)
 
     def _fill_password_field(self):
+        logger.debug('Filling password field')
         password_input_id = 'login_password'
         max_waiting_time = 5  # seconds
         wait = WebDriverWait(self.driver, max_waiting_time)

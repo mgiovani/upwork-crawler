@@ -7,6 +7,7 @@ authors = ["Giovani Moutinho <giovanim@ymail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 selenium = "^3.141.0"
+loguru = "^0.5.3"
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.21.0"
