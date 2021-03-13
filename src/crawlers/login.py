@@ -16,6 +16,7 @@ class Login():
     USERNAME = os.getenv('UPWORK_USERNAME')
     PASSWORD = os.getenv('UPWORK_PASSWORD')
     SECRET_ANSWER = os.getenv('UPWORK_SECRET_ANSWER')
+    DEBUG = os.getenv('DEBUG')
 
 
     def __init__(self):
@@ -25,7 +26,11 @@ class Login():
         options = Options()
         valid_user_agent = 'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36'
         options.add_argument(valid_user_agent)
-        options.add_argument('window-size=1920,1080')
+        options.set_headless(True)
+        if self.DEBUG:
+            options.add_argument('window-size=1920,1080')
+            options.set_headless(False)
+
         self.driver = webdriver.Chrome(chrome_options=options)
         self.driver.implicitly_wait(1)  # second
 
