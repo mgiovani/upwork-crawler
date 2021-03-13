@@ -27,6 +27,7 @@ class Login():
         options.add_argument(valid_user_agent)
         options.add_argument('window-size=1920,1080')
         self.driver = webdriver.Chrome(chrome_options=options)
+        self.driver.implicitly_wait(1)  # second
 
     def get_web_driver(self):
         return self.driver
@@ -50,13 +51,9 @@ class Login():
         element.send_keys(self.PASSWORD)
         element.send_keys(Keys.RETURN)
 
-    def _avoid_page_denied_waiting(self):
-        self.driver.implicitly_wait(5)  # seconds
-
     def run(self):
         self.driver.get(self.URL_LOGIN)
         self._is_access_denied()
 
         self._fill_username_field()
         self._fill_password_field()
-        self._avoid_page_denied_waiting()
