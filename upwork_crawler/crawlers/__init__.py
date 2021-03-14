@@ -27,14 +27,15 @@ class BaseJsonCrawler():
         return folder_path / filename
 
     def save_json_to_file(self, data, filename):
+        data = json.loads(data)
         full_path = self._get_json_full_path(filename)
-        logger.debug(f'Saving json to {full_path}')
+        logger.info(f'Saving json to {full_path}')
         with open(full_path, 'w') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
         return
 
     def get_json_from_page(self, page_url):
-        logger.debug(f'Getting json from {page_url}')
+        logger.info(f'Getting json from {page_url}')
         self.driver.get(page_url)
         raw_json = self.driver.find_element_by_tag_name('pre').text
         return json.loads(raw_json)
