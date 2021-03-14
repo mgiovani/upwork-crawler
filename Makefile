@@ -1,6 +1,9 @@
 install:
-	cp .env.example .env
+	cp env.example .env
 	poetry install
+	@echo "================================"
+	@echo "Now set credentials at .env file"
+	@echo "================================"
 
 run:
 	source .env
