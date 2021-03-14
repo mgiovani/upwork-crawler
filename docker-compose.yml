@@ -1,5 +1,8 @@
 services:
   upwork-crawler:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: upwork-crawler:latest
     environment:
       - UPWORK_USERNAME=${UPWORK_USERNAME}
