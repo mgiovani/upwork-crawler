@@ -1,10 +1,13 @@
 install:
+	cp .env.example .env
 	poetry install
 
 run:
+	source .env
 	poetry run python upwork_crawler/main.py
 
 run-debug-mode:
+	source .env
 	DEBUG=TRUE poetry run python upwork_crawler/main.py
 
 run-docker-mode:
