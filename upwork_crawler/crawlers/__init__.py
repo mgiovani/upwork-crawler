@@ -4,8 +4,8 @@ from datetime import date
 
 from loguru import logger
 
-from .login import Login
-from .exceptions import PageAccessDenied
+from crawlers.login import Login
+from crawlers.exceptions import PageAccessDenied
 
 class BaseJsonCrawler():
     def __init__(self, web_driver=None):

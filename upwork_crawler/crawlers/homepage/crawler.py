@@ -1,7 +1,7 @@
 import json
 
-from . import BaseJsonCrawler
-from .constants import UPWORK_BASE_URL
+from crawlers import BaseJsonCrawler
+from crawlers.constants import UPWORK_BASE_URL
 
 class HomepageCrawler(BaseJsonCrawler):
     URL_FWH = f'{UPWORK_BASE_URL}freelancers/api/v1/profile/me/fwh'

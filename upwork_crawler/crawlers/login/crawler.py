@@ -8,8 +8,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
 
-from .constants import UPWORK_BASE_URL
-from .exceptions import PageAccessDenied, UnableToLocateCredentials
+from crawlers.constants import UPWORK_BASE_URL
+from crawlers.exceptions import PageAccessDenied, UnableToLocateCredentials
 
 
 class Login():
