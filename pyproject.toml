@@ -1,3 +1,7 @@
+[tool.pytest.ini_options]
+addopts = "-vv"
+testpaths = ["upwork_crawler/tests"]
+
 [tool.poetry]
 name = "upwork-crawler"
 version = "0.1.0"
