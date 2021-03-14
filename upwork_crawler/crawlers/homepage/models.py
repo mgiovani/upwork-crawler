@@ -1,20 +1,7 @@
-from datetime import datetime
-from typing import Any, List, Optional
+from typing import List, Optional
 
-from pydantic import BaseModel
+from crawlers.models import BaseModelParser
 
-
-def snake_to_camel(string):
-    words = string.split('_')
-    camel_case = words[0] + ''.join(word.title() for word in words[1:])
-    return camel_case
-
-class BaseModelParser(BaseModel):
-    class Config:
-        alias_generator = snake_to_camel
-        allow_population_by_field_name = True
-        validate_assignment = True
-        validate_all = True
 
 class PortraitModel(BaseModelParser):
     portrait: Optional[str] = None
@@ -23,23 +10,35 @@ class PortraitModel(BaseModelParser):
     original_portrait: Optional[str] = None
     portrait500: Optional[str] = None
 
-class CapacityModel(BaseModel):
+
+class PCIModel(BaseModelParser):
+    action: str
+    action_credit: int
+    actual: int
+    ts: str
+    display: int
+
+
+class CapacityModel(BaseModelParser):
     nid: str
     name: str
 
-class AvailabilityModel(BaseModel):
+
+class AvailabilityModel(BaseModelParser):
     availability_ts: Optional[str] = None
     source: str
     uid: str
     person_uid: str
     capacity: CapacityModel
-    creation_ts: datetime
+    creation_ts: str
 
-class JobCategoryModel(BaseModel):
+
+class JobCategoryModel(BaseModelParser):
     name: str
     groupName: str
 
-class IdentityModel(BaseModel):
+
+class IdentityModel(BaseModelParser):
     user_id: str
     ciphertext: str
     recno: int
@@ -47,36 +46,26 @@ class IdentityModel(BaseModel):
     uid: str
     edc_user_id: int
 
-class PCIModel(BaseModel):
-    action: str
-    action_credit: int
-    actual: int
-    ts: int
-    display: int
 
-class JobCategoryModel(BaseModel):
-    name: str
-    group_name: str
-
-class SelectedCategoryModel(BaseModel):
+class SelectedCategoryModel(BaseModelParser):
     uid: str
     name: str
 
-class JobCategoriesGroupedModel(BaseModel):
+
+class JobCategoriesGroupedModel(BaseModelParser):
     group_uid: str
     group_name: str
     selected_categories: List[SelectedCategoryModel]
 
 
-class FWHModel(BaseModel):
+class FWHModel(BaseModelParser):
     person_uid: str
     portrait: PortraitModel
     pci: PCIModel
     availability: AvailabilityModel
     job_categories: List[JobCategoryModel] = []
-    job_categories_grouped: List[JobCategoriesGroupedModel]
+    job_categories_grouped: List[JobCategoriesGroupedModel] = []
     identity: IdentityModel
-    rate_tiers: List[Any]
     interviews: int
     active_proposals: int
     submitted_proposals: int
@@ -85,5 +74,5 @@ class FWHModel(BaseModel):
     state: str
     is_profile_on_temp_hold_state: bool
     locked: bool
+    visibility: str
     skills: List[str]
-    is_rce_feature_enabled: bool
