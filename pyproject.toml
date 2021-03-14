@@ -8,10 +8,12 @@ authors = ["Giovani Moutinho <giovanim@ymail.com>"]
 python = "^3.9"
 selenium = "^3.141.0"
 loguru = "^0.5.3"
+pydantic = "^1.8.1"
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.21.0"
 docker-compose = "^1.28.5"
+pytest = "^6.2.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
