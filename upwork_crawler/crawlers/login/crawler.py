@@ -19,14 +19,16 @@ class Login():
     SECRET_ANSWER = os.getenv('UPWORK_SECRET_ANSWER')
     DEBUG = os.getenv('DEBUG')
 
-
     def __init__(self):
         if not all([self.USERNAME, self.PASSWORD, self.SECRET_ANSWER]):
-            logger.error('Credentials not found. You must define credentials env vars')
+            logger.error(
+                'Credentials not found. '
+                'You must define credentials env vars'
+            )
             raise UnableToLocateCredentials()
 
         options = Options()
-        valid_user_agent = 'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36'
+        valid_user_agent = 'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36' # noqa
         options.add_argument(valid_user_agent)
         options.add_argument('--no-sandbox')
         options.set_headless(True)
@@ -37,7 +39,7 @@ class Login():
             logger.debug('Crawler set to DEBUG mode')
 
         self.driver = webdriver.Chrome(chrome_options=options)
-        self.driver.implicitly_wait(1)  # second
+        self.driver.implicitly_wait(10)  # seconds
 
     def get_web_driver(self):
         return self.driver
@@ -51,7 +53,9 @@ class Login():
     def _wait_to_be_clickable(self, element_id):
         max_waiting_time = 10  # seconds
         wait = WebDriverWait(self.driver, max_waiting_time)
-        element = wait.until(expected_conditions.element_to_be_clickable((By.ID, element_id)))
+        element = wait.until(
+            expected_conditions.element_to_be_clickable((By.ID, element_id))
+        )
         return element
 
     def _fill_username_field(self):
