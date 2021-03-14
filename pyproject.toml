@@ -13,7 +13,6 @@ python = "^3.9"
 selenium = "^3.141.0"
 loguru = "^0.5.3"
 pydantic = "^1.8.1"
-python-dotenv = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.21.0"
