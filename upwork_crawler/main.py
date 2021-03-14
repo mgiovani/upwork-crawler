@@ -3,6 +3,7 @@ from loguru import logger
 from crawlers.login import Login
 from crawlers.homepage import HomepageCrawler
 
+
 def main():
     logger.level('INFO')
     logger.info('Starting login crawler...')
@@ -16,5 +17,6 @@ def main():
 
     web_driver.quit()
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     main()
