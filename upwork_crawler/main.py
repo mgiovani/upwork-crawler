@@ -1,4 +1,6 @@
 from loguru import logger
+from dotenv import load_dotenv
+load_dotenv()
 
 from crawlers.login import Login
 from crawlers.homepage import HomepageCrawler

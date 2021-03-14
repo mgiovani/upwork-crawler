@@ -1,1 +1,1 @@
-from .crawler import HomepageCrawler
+from .crawler import HomepageCrawler # noqa

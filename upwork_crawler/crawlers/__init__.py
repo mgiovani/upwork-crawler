@@ -5,7 +5,7 @@ from datetime import date
 from loguru import logger
 
 from crawlers.login import Login
-from crawlers.exceptions import PageAccessDenied
+
 
 class BaseJsonCrawler():
     def __init__(self, web_driver=None):
@@ -16,7 +16,6 @@ class BaseJsonCrawler():
         login_crawler = Login()
         login_crawler.run()
         self.driver = login_crawler.get_web_driver()
-
 
     def _get_json_full_path(self, filename):
         today = date.today().isoformat()

@@ -1,1 +1,1 @@
-UPWORK_BASE_URL='https://www.upwork.com/'
+UPWORK_BASE_URL = 'https://www.upwork.com/'
