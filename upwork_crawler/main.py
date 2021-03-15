@@ -2,6 +2,7 @@ from loguru import logger
 
 from crawlers.login import Login
 from crawlers.homepage import HomepageCrawler
+from crawlers.profile import ProfileCrawler
 
 
 def main():
