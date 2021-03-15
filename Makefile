@@ -1,16 +1,14 @@
 install:
 	cp env.example .env
 	poetry install
-	@echo "================================"
-	@echo "Now set credentials at .env file"
-	@echo "================================"
+	@echo "=================================================================="
+	@echo "Now set credentials at .env file and use source .env to load them"
+	@echo "=================================================================="
 
 run:
-	source .env
 	poetry run python upwork_crawler/main.py
 
 run-debug-mode:
-	source .env
 	DEBUG=TRUE poetry run python upwork_crawler/main.py
 
 run-docker-mode:
