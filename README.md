@@ -61,7 +61,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src=“images/level-2.png” alt=“Project screenshot”>
+<img src="images/level-2.png" alt="Project screenshot">
 
 
 ### Built With
@@ -116,9 +116,22 @@ If you want to run this project with Docker, you will need:
        make run-debug-mode
        ```
 3. Running with Docker:
-    ```sh
-    make run-docker-mode
-    ```
+    1. Copy env.example
+       ```sh
+       cp env.example .env
+       ```
+    2. Edit credentials inside the .env file
+       ```sh
+       vim .env
+       ```
+    3. Load the .env file
+       ```sh
+       source .env
+       ```
+    4. Run the code
+       ```sh
+       make run-docker-mode
+       ```
 
 ## Usage
 
@@ -128,7 +141,7 @@ Running the project:
 <details>
   <summary>Click to show</summary>
   
-  <img src=“images/level-2.png” alt=“Level-2 image”>
+  <img src="images/level-2.png" alt="Level-2 image">
  
 </details>
 
@@ -136,7 +149,7 @@ Output from homepage crawler:
 <details>
   <summary>Click to show</summary>
   
-  <img src=“images/homepage-output.png” alt=“Homepage crawler output”>
+  <img src="images/homepage-output.png" alt="Homepage crawler output">
  
 </details>
 
@@ -144,7 +157,7 @@ Output from profile crawler:
 <details>
   <summary>Click to show</summary>
   
-  <img src=“images/profile-output.png” alt=“Profile crawler output”>
+  <img src="images/profile-output.png" alt="Profile crawler output">
  
 </details>
 
@@ -184,15 +197,15 @@ Project Link: [https://github.com/mgiovani/upwork-crawler](https://github.com/mg
 
 
 
-[contributors-shield]: https://img.shields.io/github/contributors/mgiovani/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/mgiovani/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/mgiovani/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/mgiovani/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/mgiovani/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/mgiovani/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/mgiovani/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/mgiovani/repo/issues
-[license-shield]: https://img.shields.io/github/license/mgiovani/repo.svg?style=for-the-badge
-[license-url]: https://github.com/mgiovani/repo/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/mgiovani/upwork-crawler.svg?style=for-the-badge
+[contributors-url]: https://github.com/mgiovani/upwork-crawler/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/mgiovani/upwork-crawler.svg?style=for-the-badge
+[forks-url]: https://github.com/mgiovani/upwork-crawler/network/members
+[stars-shield]: https://img.shields.io/github/stars/mgiovani/upwork-crawler.svg?style=for-the-badge
+[stars-url]: https://github.com/mgiovani/upwork-crawler/stargazers
+[issues-shield]: https://img.shields.io/github/issues/mgiovani/upwork-crawler.svg?style=for-the-badge
+[issues-url]: https://github.com/mgiovani/upwork-crawler/issues
+[license-shield]: https://img.shields.io/github/license/mgiovani/upwork-crawler.svg?style=for-the-badge
+[license-url]: https://github.com/mgiovani/upwork-crawler/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/mgiovani
