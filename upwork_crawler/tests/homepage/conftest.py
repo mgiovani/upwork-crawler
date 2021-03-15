@@ -55,7 +55,7 @@ def job_category_dict():
 def identity_dict():
     return {
         'userId': 'bobsuperworker',
-        'ciphertext': '~011d3adda6e4865468',
+        'ciphertext': '~011d3adda5e4865468',
         'recno': 1000228459,
         'legacyCiphertext': None,
         'uid': '1361618152857010176',

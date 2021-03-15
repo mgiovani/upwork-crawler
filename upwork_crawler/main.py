@@ -15,6 +15,10 @@ def main():
     homepage_crawler = HomepageCrawler(web_driver)
     homepage_crawler.run()
 
+    logger.info('Starting profile crawler...')
+    profile_crawler = ProfileCrawler(web_driver)
+    profile_crawler.run()
+
     web_driver.quit()
 
 
