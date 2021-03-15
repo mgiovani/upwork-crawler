@@ -2,6 +2,7 @@ import os
 
 from loguru import logger
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -72,10 +73,22 @@ class Login():
         element.send_keys(self.PASSWORD)
         element.send_keys(Keys.RETURN)
 
+    def _fill_secret_answer_field(self):
+        try:
+            secret_answer_input_id = 'login_deviceAuthorization_answer'
+            element = self._wait_to_be_clickable(secret_answer_input_id)
+            logger.debug('Filling secret answer field')
+            element.send_keys(self.SECRET_ANSWER)
+            element.send_keys(Keys.RETURN)
+        except TimeoutException:
+            pass
+        finally:
+            self._wait_to_be_clickable('search-box-el')
+
     def run(self):
         self.driver.get(self.URL_LOGIN)
         self._is_access_denied()
 
         self._fill_username_field()
         self._fill_password_field()
-        self._wait_to_be_clickable('search-box-el')
+        self._fill_secret_answer_field()
