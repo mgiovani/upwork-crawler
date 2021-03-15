@@ -10,3 +10,4 @@ class HomepageCrawler(BaseJsonCrawler):
         json_result = self.get_json_from_page(self.URL_FWH)
         model = FWHModel(**json_result)
         self.save_json_to_file(model.json(), 'homepage_fwh.json')
+        return model

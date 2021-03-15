@@ -1,4 +1,5 @@
 import os
+from time import sleep
 
 from loguru import logger
 from selenium import webdriver
@@ -87,7 +88,7 @@ class Login():
 
     def run(self):
         self.driver.get(self.URL_LOGIN)
-        self._is_access_denied()
+        sleep(3)  # sleep for 3 seconds to avoid blocks
 
         self._fill_username_field()
         self._fill_password_field()

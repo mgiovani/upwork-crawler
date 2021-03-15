@@ -14,10 +14,12 @@ def main():
 
     logger.info('Starting homepage crawler...')
     homepage_crawler = HomepageCrawler(web_driver)
-    homepage_crawler.run()
+    fwh_model = homepage_crawler.run()
 
+    profile_cipher = fwh_model.identity.ciphertext
     logger.info('Starting profile crawler...')
     profile_crawler = ProfileCrawler(web_driver)
+    profile_crawler.profile_cipher = profile_cipher
     profile_crawler.run()
 
     web_driver.quit()
