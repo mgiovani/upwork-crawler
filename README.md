@@ -21,7 +21,7 @@
     A simple web crawler to get employment data from Upwork.
     <br />
     <br />
-    <a href="https://github.com/mgiovani/upwork-crawler/tree/main/docs">View Examples</a>
+    <a href="#usage">View Examples</a>
     ·
     <a href="https://github.com/mgiovani/upwork-crawler/issues">Report Bug</a>
     ·
