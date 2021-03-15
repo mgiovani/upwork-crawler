@@ -19,4 +19,4 @@ RUN poetry config virtualenvs.create false && poetry install
 
 ADD . /app
 
-ENTRYPOINT ["python", "./src/main.py"]
+ENTRYPOINT ["python", "./upwork_crawler/main.py"]
